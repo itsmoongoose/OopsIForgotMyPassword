@@ -4,11 +4,19 @@
 async function main() {
   // This is where the code you're actually experimenting with goes.
 
-  const prompt = "Please enter your name, or 'Exit' to quit: ";
-  let name = await input(prompt);
+  numTotal = await input("Please input number: ");
 
-  while (name !== "Exit") {
-    output("Hello, " + name + "!");
-    name = await input(prompt);
-  }
+if (numTotal > 0) {
+
+numTotal = Number(numTotal);
+numDivide = await input("Please input divided number: ");
+numDivide = Number(numDivide);
+numGroups = numTotal / numDivide;
+output(numGroups);
+numRemain = numTotal % numDivide;
+output("The remainder is " + numRemain);
+}
+else {
+output("Invalid input. Please try again.");
+}
 }
