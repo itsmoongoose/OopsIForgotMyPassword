@@ -1,22 +1,13 @@
-// eslint-disable-next-line no-unused-vars
-/* global output, input */
-// eslint-disable-next-line no-unused-vars
 async function main() {
-  // This is where the code you're actually experimenting with goes.
 
-  numTotal = await input("Please input number: ");
 
-if (numTotal > 0) {
+//List of usernames
+    const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
+        "test_name_please_ignore", "Babushka", "not.a.robot", "in_jail_out_soon", "afk",
+        "LiveLaughToasterBath", "bulky_refrigerator", "blank" ];
+    let randomNum = Math.random() * 12;
 
-numTotal = Number(numTotal);
-numDivide = await input("Please input divided number: ");
-numDivide = Number(numDivide);
-numGroups = numTotal / numDivide;
-output(numGroups);
-numRemain = numTotal % numDivide;
-output("The remainder is " + numRemain);
-}
-else {
-output("Invalid input. Please try again.");
-}
+
+
+    output ("Welcome Back " + UserList[randomNum]);
 }
