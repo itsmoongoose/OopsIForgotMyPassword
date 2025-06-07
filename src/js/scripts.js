@@ -4,24 +4,7 @@
     const ChangePass = "If you have forgotten your password, enter your username exactly as you see it to see available options: "
     let Tries = 0;
 
-//Function -- get password
-
-/*
-async function GetPass1() {
-    let Password = await input("Please enter your password: ");
-    Password = await input(WrongPass);
-    Password = await input(WrongPassLast);
-    Password = await input(ChangePass);
-}
-*/
-
-//Function -- change password
-
-
-
-
-
-
+//Main Function
 async function main() {
 
 //List of usernames
