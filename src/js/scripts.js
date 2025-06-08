@@ -7,6 +7,13 @@
     const SamePassMess = "New password cannot be the same as old password. "
     let Tries = 0;
 
+//List of usernames
+    const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
+        "test_name_please_ignore", "Babushka", "not.a.robot", "in_jail_out_soon", "afk",
+        "LiveLaughToasterBath", "bulky_refrigerator", "blank" ];
+    let randomNum = Math.round(Math.random() * 11);
+    let UserName1 = UserList[randomNum];
+
 //Function -- get password
 async function GetPassword() {
     output("Please enter your password:")
@@ -16,15 +23,11 @@ async function GetPassword() {
     output(WrongPassLast);
     Password = await input("");
     output(SeeMenu);
-    ReTypeUser = await input("");
+    let ReTypeUser = await input("");
 
-
-    //ERROR here? following code will not run...
     //Input username doesn't match actual username
     if (ReTypeUser != UserName1) {
         throw("QuitMessage");
-    } else {
-        output("It matches somehow...?");
     }
 }
 
@@ -70,13 +73,6 @@ async function ChangePassword() {
 //Main Function
 async function main() {
     try {
-
-//List of usernames
-    const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
-        "test_name_please_ignore", "Babushka", "not.a.robot", "in_jail_out_soon", "afk",
-        "LiveLaughToasterBath", "bulky_refrigerator", "blank" ];
-    let randomNum = Math.round(Math.random() * 11);
-    let UserName1 = UserList[randomNum];
 
 //Program starts
     output("Welcome Back " + UserName1 + "!");
