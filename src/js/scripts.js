@@ -4,6 +4,7 @@
     const ChangePass = "If you forgot your password, try entering your username to see available options. "
     const NoRecon = "I have no idea what you're trying to type... Want to try again?"
     const QuitMessage = "I still have no clue what you're typing. Maybe a picture game would be more up your alley."
+    const SamePassMess = "New password cannot be the same as old password. "
     let Tries = 0;
 
 //Main Function
@@ -53,7 +54,14 @@ async function main() {
         //Change Password -- pick new password
         if (ResetPassInput == 2) {
             output("Correct! Thank you for verifying your identity, " + UserName1 + ".");
+            let SamePass = await input("Please enter a new password: ");
+            output(SamePassMess);
             let NewPass = await input("Please enter a new password: ");
+            while (SamePass == NewPass) {
+                output(SamePassMess);
+                NewPass = await input("Please enter a new Password: ");
+            }
+            
         } else {
             output("Yikes... Even I know the answer to that. It's probably best to stop here...");
             process.exit();
