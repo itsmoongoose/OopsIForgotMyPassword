@@ -19,6 +19,15 @@ async function GetPassword() {
     Password = await input("");
 }
 
+//Function -- Menu Options
+async function DisplayMenu() {
+    let MenuOptions = [ "1. Reset Password" ];
+    output("Please enter an option from the list below:");
+    output(MenuOptions);
+    let MenuChoice = await input("");
+    MenuChoice = MenuChoice.toLowerCase();
+}
+
 
 
 
@@ -41,11 +50,7 @@ async function main() {
     function GetPassword() {}
 
 //Menu Options
-    let MenuOptions = [ "1. Reset Password" ];
-    output("Please enter an option from the list below:");
-    output(MenuOptions);
-    let MenuChoice = await input("");
-    MenuChoice = MenuChoice.toLowerCase();
+    function DisplayMenu() {}
 
     //User input doesn't match menu options
     while (!MenuChoice == "1" || !MenuChoice.includes("reset")) {
@@ -81,7 +86,15 @@ async function main() {
             throw("Yikes... Even I know the answer to that. It's probably best to stop here...");
         }
     }
+
+
+
+
+
+
     }
+
+    //Catch Error Statements
     catch (error) {
         output("");
     }
