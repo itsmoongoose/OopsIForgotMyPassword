@@ -21,11 +21,28 @@ async function GetPassword() {
 
 //Function -- Menu Options
 async function DisplayMenu() {
-    let MenuOptions = [ "1. Reset Password" ];
+    let MenuOptions = [ "1", "Reset Password" ];
     output("Please enter an option from the list below:");
     output(MenuOptions);
     let MenuChoice = await input("");
     MenuChoice = MenuChoice.toLowerCase();
+
+    //User input doesn't match menu options
+    while (MenuOptions.includes(MenuChoice)) {
+        Tries = (Tries + 1);
+    
+    //(!MenuChoice == "1" || !MenuChoice.includes("reset")) {
+        Tries = (Tries + 1);
+
+        //Too many tries -- program terminates
+        if (Tries >= 3) {
+            output(QuitMessage);
+            throw(QuitMessage);
+        } else {
+            output(NoRecon);
+            MenuChoice = await input(" ");
+        }
+}
 }
 
 
@@ -47,26 +64,13 @@ async function main() {
     output("Welcome Back " + UserName1 + "!");
 
 //Get Password
-    function GetPassword() {}
+    await GetPassword();
 
 //Menu Options
-    function DisplayMenu() {}
-
-    //User input doesn't match menu options
-    while (!MenuChoice == "1" || !MenuChoice.includes("reset")) {
-        Tries = (Tries + 1);
-
-        //Too many tries -- program terminates
-        if (Tries >= 3) {
-            output(QuitMessage);
-            throw(QuitMessage);
-        } else {
-            output(NoRecon);
-            MenuChoice = await input(" ");
-        }
+    await DisplayMenu();
     
     //Change Password -- answer security question
-    } if (MenuChoice == "1" || MenuChoice.includes("reset")) {
+    if (MenuChoice == "1" || MenuChoice.includes("reset")) {
         output("To change your password, please answer this highly secure, skill-testing question:");
         output("What is 1 + 1?");
         let ResetPassInput = await input("");
@@ -85,7 +89,12 @@ async function main() {
         } else {
             throw("Yikes... Even I know the answer to that. It's probably best to stop here...");
         }
+    
+        //Password could not be reset
+        output("Unfortunately, your password could not be reset at this time. Now returning to the Sign-In page.");
     }
+
+    
 
 
 
