@@ -18,10 +18,11 @@ async function main() {
     let UserName1 = UserList[randomNum];
 
 //Program starts
-    output ("Welcome Back " + UserName1 + "!");
+    output("Welcome Back " + UserName1 + "!");
 
 //Get Password
-    let Password = await input("Please enter your password: ");
+    output("Please enter your password:")
+    let Password = await input("");
     output(WrongPass);
     Password = await input("");
     output(WrongPassLast);
