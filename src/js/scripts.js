@@ -16,59 +16,27 @@ async function GetPassword() {
     output(WrongPassLast);
     Password = await input("");
     output(ChangePass);
-    Password = await input("");
-}
+    ReTypeUser = await input("");
 
-//Function -- Menu Options
-async function DisplayMenu() {
-    let MenuOptions = [ "1", "Reset Password" ];
-    output("Please enter an option from the list below:");
-    output(MenuOptions);
-    let MenuChoice = await input("");
-    MenuChoice = MenuChoice.toLowerCase();
-
-    //User input doesn't match menu options
-    while (MenuOptions.includes(MenuChoice)) {
-        Tries = (Tries + 1);
     
-    //(!MenuChoice == "1" || !MenuChoice.includes("reset")) {
-        Tries = (Tries + 1);
 
-        //Too many tries -- program terminates
-        if (Tries >= 3) {
-            output(QuitMessage);
-            throw(QuitMessage);
-        } else {
-            output(NoRecon);
-            MenuChoice = await input(" ");
-        }
-}
+
+    //IF/ELSE statement -- if input doesn't match username
 }
 
+//Function -- Too many tries
+async function TooManyTries() {
+    if (Tries >= 3) {
+        throw(QuitMessage);
+    } else {
+        output(NoRecon);
+        MenuChoice = await input("");
+    }
+}
 
+//Function -- Change Password
+async function ChangePassword() {
 
-
-
-//Main Function
-async function main() {
-    try {
-
-//List of usernames
-    const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
-        "test_name_please_ignore", "Babushka", "not.a.robot", "in_jail_out_soon", "afk",
-        "LiveLaughToasterBath", "bulky_refrigerator", "blank" ];
-    let randomNum = Math.round(Math.random() * 12);
-    let UserName1 = UserList[randomNum];
-
-//Program starts
-    output("Welcome Back " + UserName1 + "!");
-
-//Get Password
-    await GetPassword();
-
-//Menu Options
-    await DisplayMenu();
-    
     //Change Password -- answer security question
     if (MenuChoice == "1" || MenuChoice.includes("reset")) {
         output("To change your password, please answer this highly secure, skill-testing question:");
@@ -93,8 +61,83 @@ async function main() {
         //Password could not be reset
         output("Unfortunately, your password could not be reset at this time. Now returning to the Sign-In page.");
     }
+}
 
-    
+//Main Function
+async function main() {
+    try {
+
+//List of usernames
+    const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
+        "test_name_please_ignore", "Babushka", "not.a.robot", "in_jail_out_soon", "afk",
+        "LiveLaughToasterBath", "bulky_refrigerator", "blank" ];
+    let randomNum = Math.round(Math.random() * 12);
+    let UserName1 = UserList[randomNum];
+
+//Program starts
+    output("Welcome Back " + UserName1 + "!");
+
+//Get Password -- for Phase1 (change password)
+    await GetPassword();
+
+//Menu Options
+    let MenuOptions = [ "1. Reset Password" ];
+    output("Please enter an option from the list below:");
+    output(MenuOptions);
+    MenuChoice = await input("");
+    MenuChoice = MenuChoice.toLowerCase();
+
+    //User input doesn't match menu options
+    while (!MenuChoice == "1" || !MenuChoice.includes("reset")) {
+        Tries = (Tries + 1);
+    }
+    await TooManyTries();
+    Tries = 0;
+
+//Change Password
+    await ChangePassword();
+
+//Get Password -- for Phase2 (change username)
+    await GetPassword();
+
+    //Change Username -- options menu
+    MenuOptions = [ "1. Reset Password", "2. Change Username" ];
+    output("Please enter an option from the list below:");
+    output(MenuOptions);
+    let MenuChoice = await input("");
+    MenuChoice = MenuChoice.toLowerCase();
+
+    //User input doesn't match menu options
+    while (!MenuChoice == "1" || !MenuChoice.includes("reset") || !MenuChoice == "2" || !MenuChoice.includes("change")) {
+        Tries = (Tries + 1);
+        await TooManyTries();
+        Tries = 0;
+    }
+    //Change Password
+    await ChangePassword();
+
+    //Change Username
+    if (MenuChoice == "2" || MenuChoice.includes(change)) {
+        let UserSecQWrongAnswers = [ "Eliphant", "Elliphant", "Eliphent", "Elliphent", "Elaphant", "Ellaphant", "Elaphent", "Ellaphent", "Elephent", "Ellephent" ];
+        output("To change your username, please verify your identity by answering this security question: Which animal rhymes with Smeliphant?");
+        let UserSecQ = await input("");
+        UserSecQ = UserSecQ.toLowerCase();
+        while (UserSecQWrongAnswers.includes(UserSecQ)) {
+            output("Oh dear. Maybe no more spelling questions...");
+            output("Let's try that again: Which animal rhymes with Smeliphant?");
+            UserSecQ = await input("");
+            Tries = (Tries + 1);
+            await TooManyTries();
+            Tries = 0;
+        }
+        if (UserSecQ == "elephant") {
+            output("Amazing! Nothing gets by you! Please enter your new username: ");
+            let ChosenName = await input("");
+            //CONTINUE HERE
+        }
+    }
+
+
 
 
 
@@ -111,4 +154,4 @@ async function main() {
 
 
 
-}  
+}
