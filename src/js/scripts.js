@@ -7,6 +7,22 @@
     const SamePassMess = "New password cannot be the same as old password. "
     let Tries = 0;
 
+//Function -- get password
+async function GetPassword() {
+    output("Please enter your password:")
+    let Password = await input("");
+    output(WrongPass);
+    Password = await input("");
+    output(WrongPassLast);
+    Password = await input("");
+    output(ChangePass);
+    Password = await input("");
+}
+
+
+
+
+
 //Main Function
 async function main() {
     try {
@@ -22,14 +38,7 @@ async function main() {
     output("Welcome Back " + UserName1 + "!");
 
 //Get Password
-    output("Please enter your password:")
-    let Password = await input("");
-    output(WrongPass);
-    Password = await input("");
-    output(WrongPassLast);
-    Password = await input("");
-    output(ChangePass);
-    Password = await input("");
+    function GetPassword() {}
 
 //Menu Options
     let MenuOptions = [ "1. Reset Password" ];
