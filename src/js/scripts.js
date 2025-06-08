@@ -16,6 +16,7 @@
 
 //Function -- get password
 async function GetPassword() {
+try {
     output("Please enter your password:")
     let Password = await input("");
     output(WrongPass);
@@ -27,23 +28,27 @@ async function GetPassword() {
 
     //Input username doesn't match actual username
     if (ReTypeUser != UserName1) {
-        throw("QuitMessage");
+        throw new Error("Well you definitely spelled that wrong. Maybe it's time for a break.");
     }
+} finally {}
 }
+
 
 //Function -- Too many tries
 async function TooManyTries() {
+try {
     if (Tries >= 3) {
-        throw(QuitMessage);
+        throw new Error(QuitMessage);
     } else {
         output(NoRecon);
         MenuChoice = await input("");
     }
+} finally {}
 }
 
 //Function -- Change Password
 async function ChangePassword() {
-
+try {
     //Change Password -- answer security question
     if (MenuChoice == "1" || MenuChoice.includes("reset")) {
         output("To change your password, please answer this highly secure, skill-testing question:");
@@ -62,17 +67,18 @@ async function ChangePassword() {
             }
 
         } else {
-            throw("Yikes... Even I know the answer to that. It's probably best to stop here...");
+            throw new Error("Yikes... Even I know the answer to that. It's probably best to stop here...");
         }
     
         //Password could not be reset
         output("Unfortunately, your password could not be reset at this time. Now returning to the Sign-In page.");
     }
+} finally {}
 }
 
 //Main Function
 async function main() {
-    try {
+try {
 
 //Program starts
     output("Welcome Back " + UserName1 + "!");
@@ -137,21 +143,13 @@ async function main() {
         }
     }
 
+//Try function ending
+}
 
+//Catch Error Statements
+catch (error) {
+    output(error.message);
+}
 
-
-
-
-
-
-    }
-
-    //Catch Error Statements
-    catch (error) {
-        output("");
-    }
-
-
-
-
+//Main function ending
 }
