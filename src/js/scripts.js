@@ -53,7 +53,8 @@ async function main() {
     
     //Change Password -- answer security question
     } if (MenuChoice == "1" || MenuChoice.includes("reset")) {
-        output("To change your password, please answer this security question: What is 1 + 1? ");
+        output("To change your password, please answer this highly secure, skill-testing question:");
+        output("What is 1 + 1?");
         let ResetPassInput = await input("");
 
         //Change Password -- pick new password
