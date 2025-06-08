@@ -1,9 +1,9 @@
 //Defining variables
     const WrongPass = "Wrong password. Please try again: ";
     const WrongPassLast = "Wow you're bad at this. I'll let you try one more time. ";
-    const ChangePass = "If you forgot your password, try entering your username to see available options. "
+    const SeeMenu = "If you forgot your password, try entering your username to see available options. "
     const NoRecon = "I have no idea what you're trying to type... Want to try again?"
-    const QuitMessage = "I still have no clue what you're typing. Maybe a picture game would be more up your alley."
+    const QuitMessage = "I have no clue what you're typing. Maybe a picture game would be more up your alley."
     const SamePassMess = "New password cannot be the same as old password. "
     let Tries = 0;
 
@@ -15,13 +15,17 @@ async function GetPassword() {
     Password = await input("");
     output(WrongPassLast);
     Password = await input("");
-    output(ChangePass);
+    output(SeeMenu);
     ReTypeUser = await input("");
 
-    
 
-
-    //IF/ELSE statement -- if input doesn't match username
+    //ERROR here? following code will not run...
+    //Input username doesn't match actual username
+    if (ReTypeUser != UserName1) {
+        throw("QuitMessage");
+    } else {
+        output("It matches somehow...?");
+    }
 }
 
 //Function -- Too many tries
@@ -88,7 +92,7 @@ async function main() {
     MenuChoice = MenuChoice.toLowerCase();
 
     //User input doesn't match menu options
-    while (!MenuChoice == "1" || !MenuChoice.includes("reset")) {
+    while (MenuChoice != "1" || !MenuChoice.includes("reset")) {
         Tries = (Tries + 1);
     }
     await TooManyTries();
@@ -108,7 +112,7 @@ async function main() {
     MenuChoice = MenuChoice.toLowerCase();
 
     //User input doesn't match menu options
-    while (!MenuChoice == "1" || !MenuChoice.includes("reset") || !MenuChoice == "2" || !MenuChoice.includes("change")) {
+    while (MenuChoice != "1" || !MenuChoice.includes("reset") || MenuChoice != "2" || !MenuChoice.includes("change")) {
         Tries = (Tries + 1);
         await TooManyTries();
         Tries = 0;
