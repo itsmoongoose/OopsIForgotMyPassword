@@ -9,6 +9,7 @@
 
 //Main Function
 async function main() {
+    try {
 
 //List of usernames
     const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
@@ -40,12 +41,12 @@ async function main() {
     //User input doesn't match menu options
     while (!MenuChoice == "1" || !MenuChoice.includes("reset")) {
         output(NoRecon);
-        let Tries = (Tries + 1);
+        Tries = (Tries + 1);
 
         //Too many tries -- program terminates
         if (Tries >= 3) {
             output(QuitMessage);
-            process.exit();
+            throw(QuitMessage);
         } else {
             MenuChoice = await input(" ");
         }
@@ -67,11 +68,13 @@ async function main() {
             }
 
         } else {
-            output("Yikes... Even I know the answer to that. It's probably best to stop here...");
-            process.exit();
+            throw("Yikes... Even I know the answer to that. It's probably best to stop here...");
         }
     }
-
+    }
+    catch (error) {
+        output("");
+    }
 
 
 
