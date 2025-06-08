@@ -75,7 +75,7 @@ async function main() {
     const UserList = [ "Shrek2onDVD", "makeawishkid", "real_name_hidden", "AllGoodNamesRGone",
         "test_name_please_ignore", "Babushka", "not.a.robot", "in_jail_out_soon", "afk",
         "LiveLaughToasterBath", "bulky_refrigerator", "blank" ];
-    let randomNum = Math.round(Math.random() * 12);
+    let randomNum = Math.round(Math.random() * 11);
     let UserName1 = UserList[randomNum];
 
 //Program starts
