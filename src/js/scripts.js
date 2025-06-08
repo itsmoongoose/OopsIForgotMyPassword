@@ -22,9 +22,12 @@ async function main() {
 
 //Get Password
     let Password = await input("Please enter your password: ");
-    Password = await input(WrongPass);
-    Password = await input(WrongPassLast);
-    Password = await input(ChangePass);
+    output(WrongPass);
+    Password = await input("");
+    output(WrongPassLast);
+    Password = await input("");
+    output(ChangePass);
+    Password = await input("");
 
 //Menu Options
     let MenuOptions = [ "1. Reset Password" ];
@@ -61,7 +64,7 @@ async function main() {
                 output(SamePassMess);
                 NewPass = await input("Please enter a new Password: ");
             }
-            
+
         } else {
             output("Yikes... Even I know the answer to that. It's probably best to stop here...");
             process.exit();
