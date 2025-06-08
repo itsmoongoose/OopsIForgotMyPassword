@@ -40,7 +40,6 @@ async function main() {
 
     //User input doesn't match menu options
     while (!MenuChoice == "1" || !MenuChoice.includes("reset")) {
-        output(NoRecon);
         Tries = (Tries + 1);
 
         //Too many tries -- program terminates
@@ -48,6 +47,7 @@ async function main() {
             output(QuitMessage);
             throw(QuitMessage);
         } else {
+            output(NoRecon);
             MenuChoice = await input(" ");
         }
     
